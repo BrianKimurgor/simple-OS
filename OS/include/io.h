@@ -8,8 +8,20 @@
 #define VIDEO_MEM 0xB8000 ///< Alias for video memory start address.
 #define SCREEN_WIDTH 80 ///< Alias for screen width in columns.
 #define SCREEN_HEIGHT 25 ///< Alias for screen height in rows.
+#ifndef KEYBOARD_H
+#define KEYBOARD_H
 
 // Define our function prototypes
+
+
+// Keymap array to convert scancodes to ASCII characters
+extern unsigned char keymap[128];
+
+// Function to initialize the keymap with PS/2 scancode mappings
+void initkeymap();
+
+#endif
+
 
 /**
  * @brief Writes a byte to a specified I/O port.
