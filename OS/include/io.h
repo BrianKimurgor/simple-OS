@@ -1,13 +1,14 @@
 #include "./types.h"
 
 // Define our constants that will be widely used
-#define VGA_WIDTH 80  ///< Screen width in columns.
-#define VGA_HEIGHT 25 ///< Screen height in rows.
-#define VIDEO_MEMORY 0xB8000 ///< Start of video memory in VGA text mode.
 #define TEXT_COLOR 0x07 ///< Default text color (white on black).
 #define VIDEO_MEM 0xB8000 ///< Alias for video memory start address.
 #define SCREEN_WIDTH 80 ///< Alias for screen width in columns.
 #define SCREEN_HEIGHT 25 ///< Alias for screen height in rows.
+#define VGA_WIDTH 80  ///< Screen width in columns.
+#define VGA_HEIGHT 25 ///< Screen height in rows.
+#define VIDEO_MEMORY 0xB8000 ///< Start of video memory in VGA text mode.
+
 #ifndef KEYBOARD_H
 #define KEYBOARD_H
 
@@ -23,12 +24,8 @@ void initkeymap();
 #endif
 
 
-/**
- * @brief Writes a byte to a specified I/O port.
- *
- * @param port The I/O port number to write to.
- * @param value The byte value to write.
- */
+// Writes a byte to a specified I/O port.
+
 void outb(uint16 port, uint8 value);
 
 /**

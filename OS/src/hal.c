@@ -1,26 +1,6 @@
 #include "hal.h"
 #include "io.h"       // For inb and outb functions
 
-// Polling-based getchar function to read a character from the keyboard
-char getchar() {
-    unsigned char scancode;
-
-    // Poll the keyboard's status port (0x64) until it indicates that data is ready
-    while (!(inb(0x64) & 0x01));  // Wait until the keyboard is ready to send data
-
-    // Read the scancode from the keyboard data port (0x60)
-    scancode = inb(0x60);
-
-    // Check if it's a key press (not a key release)
-    if (scancode & 0x80) {
-        // Key release, so ignore it by returning 0
-        return 0;
-    }
-
-    // Return the corresponding ASCII character from the keymap defined in io.c
-    return keymap[scancode];
-}
-
 // scanf function to read a string from the keyboard input
 void scanf(char string[]) {
     char input;
@@ -50,4 +30,22 @@ void scanf(char string[]) {
             }
         }
     }
+}
+
+
+// Polling-based getchar function to read a character from the keyboard
+char getchar() {
+    unsigned char scancode;
+
+    while (!(inb(0x64) & 0x01));  // Wait until the keyboard is ready to send data
+
+    scancode = inb(0x60);
+
+    // Check if it's a key press (not a key release)
+    if (scancode & 0x80) {
+        // Key release, so ignore it by returning 0
+        return 0;
+    }
+    // Return the corresponding ASCII character from the keymap defined in io.c
+    return keymap[scancode];
 }
